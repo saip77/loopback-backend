@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-//get all users
+//GET all users
 const getUsers = async(req,res)=>{
     try{
         const result = await pool.query('SELECT * FROM users');
@@ -11,7 +11,7 @@ const getUsers = async(req,res)=>{
         res.status(500).json({error:'Internal server error'});
     }
 }
-//get user by id
+//GET user by id
 const getUserById = async(req,res)=>{
     try{
         const result = await pool.query('SELECT * FROM users WHERE id = $1', [req.params.id]);
@@ -22,7 +22,7 @@ const getUserById = async(req,res)=>{
         res.status(500).json({error:'Internal server error'});
     }
 }
-//create user
+//CREATE user
 const createUser = async(req,res)=>{
     const {username, email, password} = req.body;
     if(!username || !email || !password){
@@ -44,7 +44,7 @@ const createUser = async(req,res)=>{
         res.status(500).json({error:'Internal server error'});
     }
 }
-//edit user
+//EDIT user
 const editUser = async(req,res)=>{
     const{username,email,password} = req.body;
     try{
@@ -62,7 +62,7 @@ const editUser = async(req,res)=>{
         res.status(500).json({error:`Internal server error`});
     }
 }
-//delete user
+//DELETE user
 const deleteUser = async(req,res)=>{
     const{id} = req.params.id;
     try{
