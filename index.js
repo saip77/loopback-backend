@@ -2,11 +2,14 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 5500;
-app.get("/:id", (req,res)=>{
-    const id = req.params.id ;
-    res.send(`Hi your user id is ${id}`)
-})
-app.listen(port, ()=>{
-    console.log(`Running on port ${port}`)
-})
+const port = process.env.PORT || 3000;
+const userRoutes = require('./routes/userRoutes');
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/users', userRoutes);
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
